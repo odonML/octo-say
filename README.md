@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: OctoSay
-        uses: odonML/octo-say@v1.0.0
+        uses: odonML/octo-say@v1
         with:
             user-name: "odonml"
 ```
