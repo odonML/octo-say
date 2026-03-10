@@ -1,0 +1,24 @@
+name: 'OctoSay'
+description: 'Muestra un saludo del Octocat usando la API de GitHub'
+author: 'odonml'
+
+branding:
+  icon: 'message-square' # Elige un icono de Feather Icons
+  color: 'blue'
+
+inputs:
+  user-name:
+    description: 'Nombre del usuario a saludar'
+    required: true
+    default: 'user'
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Run OctoSay
+      shell: bash
+      env:
+        USER_NAME: ${{ inputs.user-name }}
+      run: |
+        SAFE_NAME="${USER_NAME:-Desconocido}"
+        curl -s "https://api.github.com/octocat?s=Hello,+$SAFE_NAME"
