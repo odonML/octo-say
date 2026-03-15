@@ -17,9 +17,9 @@ To use this action in your project, add these lines to your `.github/workflows/m
 
 ```yaml
 - name: Run Octo-Say
-	uses: odonML/octo-say@v2
-	with:
-		message: "hello, world"
+  uses: odonML/octo-say@v2
+  with:
+    message: "hello, world"
 ```
 Note: This action only supports plain text and spaces. Special characters are not allowed
 
