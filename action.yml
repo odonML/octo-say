@@ -7,10 +7,10 @@ branding:
   color: 'blue'
 
 inputs:
-  user-name:
-    description: 'Nombre del usuario a saludar'
+  message:
+    description: 'Mensaje a mostrar'
     required: true
-    default: 'user'
+    default: 'Hello, world!'
 
 runs:
   using: 'composite'
@@ -18,7 +18,10 @@ runs:
     - name: Run OctoSay
       shell: bash
       env:
-        USER_NAME: ${{ inputs.user-name }}
+        MESSAGE: ${{ inputs.message }}
       run: |
-        SAFE_NAME="${USER_NAME:-Desconocido}"
-        curl -s "https://api.github.com/octocat?s=Hello,+$SAFE_NAME"
+        SAFE_MESSAGE=$(echo "${{ env.MESSAGE }}" | tr ' ' '+')
+        if [ -z "$SAFE_MESSAGE" ]; then
+          SAFE_MESSAGE="Hello,+World!!"
+        fi
+        curl -s "https://api.github.com/octocat?s=$SAFE_MESSAGE"
